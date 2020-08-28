@@ -1,4 +1,0 @@
-enum CoordType {
-  GERAL,
-  TECNICA,
-}
