@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../entities/coord.dart';
 import 'components/email_list/email_list.dart';
 import 'components/name_input/name_input.dart';
 import 'components/phone_list/phone_list.dart';
@@ -6,6 +7,9 @@ import 'components/type_selector/type_selector.dart';
 import 'controller.dart';
 
 class CoordFormPage extends StatefulWidget {
+  final Coord coordEdit;
+
+  const CoordFormPage({Key key, @required this.coordEdit}) : super(key: key);
   @override
   _CoordFormPageState createState() => _CoordFormPageState();
 }
@@ -14,7 +18,7 @@ class _CoordFormPageState extends State<CoordFormPage> {
   final Controller _controller = new Controller();
   @override
   void initState() {
-    _controller.init();
+    _controller.init(widget.coordEdit);
     super.initState();
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:saudeMentalSusDatabase/pages/coord_form_page/coord_form_page.dart';
+import 'package:saudeMentalSusDatabase/components/add_item_button/add_item_button.dart';
+import 'package:saudeMentalSusDatabase/components/edit_delete_buttons/edit_delete_buttons.dart';
+import 'package:saudeMentalSusDatabase/entities/coord.dart';
 import 'controller.dart';
 
 class CoordListComp extends StatelessWidget {
@@ -21,26 +23,9 @@ class CoordListComp extends StatelessWidget {
                 'Coordenadores',
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              RaisedButton(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Theme.of(context).buttonColor,
-                      ),
-                      Text(
-                        'ADICIONAR',
-                        style: TextStyle(color: Theme.of(context).buttonColor),
-                      )
-                    ],
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () async {
-                    final coord = await Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => CoordFormPage()));
-                    _controller.add(coord);
-                  })
+              AddItemButtonComp(
+                onPressed: () async => _controller.add(context),
+              )
             ],
           ),
         ),
@@ -49,18 +34,15 @@ class CoordListComp extends StatelessWidget {
                 child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: _controller.coords.length,
-                    itemBuilder: (_, index) => ListTile(
-                          title: Text(_controller.coords[index].toString()),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.redAccent,
-                            ),
-                            onPressed: () {
-                              _controller.remove(index);
-                            },
-                          ),
-                        ))))
+                    itemBuilder: (_, index) {
+                      return ListTile(
+                          title: Text(_controller.getByIndex(index).name),
+                          trailing: EditDeleteButtons(
+                            editFunction: () =>
+                                _controller.edit(context, index),
+                            deleteFunction: () => _controller.remove(index),
+                          ));
+                    })))
       ],
     );
   }

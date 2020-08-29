@@ -42,11 +42,11 @@ mixin _$Controller on _Controller, Store {
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
-  dynamic add(Coord coord) {
+  dynamic _add(Coord coord) {
     final _$actionInfo =
-        _$_ControllerActionController.startAction(name: '_Controller.add');
+        _$_ControllerActionController.startAction(name: '_Controller._add');
     try {
-      return super.add(coord);
+      return super._add(coord);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }
@@ -58,6 +58,17 @@ mixin _$Controller on _Controller, Store {
         _$_ControllerActionController.startAction(name: '_Controller.remove');
     try {
       return super.remove(index);
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _edit(Coord coord, int index) {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller._edit');
+    try {
+      return super._edit(coord, index);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }

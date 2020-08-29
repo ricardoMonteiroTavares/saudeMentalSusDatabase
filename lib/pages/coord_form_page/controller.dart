@@ -10,8 +10,15 @@ class Controller = _Controller with _$Controller;
 
 abstract class _Controller with Store {
   @action
-  init() {
-    resetCoord();
+  init(Coord coordEdit) {
+    // Condição para criar um novo Coordenador
+    if (coordEdit == null) {
+      resetCoord();
+      // Condição para editar um coordenador já existente
+    } else {
+      var coord = GetIt.I.get<Coord>();
+      coord = coordEdit;
+    }
   }
 
   validate(BuildContext context) {

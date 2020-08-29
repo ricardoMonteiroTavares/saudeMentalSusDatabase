@@ -39,14 +39,32 @@ mixin _$Controller on _Controller, Store {
     });
   }
 
+  final _$addAsyncAction = AsyncAction('_Controller.add');
+
+  @override
+  Future<void> add(BuildContext context, PhoneFormComp phoneForm) {
+    return _$addAsyncAction.run(() => super.add(context, phoneForm));
+  }
+
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
-  dynamic add(String phone) {
+  dynamic init() {
     final _$actionInfo =
-        _$_ControllerActionController.startAction(name: '_Controller.add');
+        _$_ControllerActionController.startAction(name: '_Controller.init');
     try {
-      return super.add(phone);
+      return super.init();
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _add(String phone) {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller._add');
+    try {
+      return super._add(phone);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }

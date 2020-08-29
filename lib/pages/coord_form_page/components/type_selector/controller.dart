@@ -30,6 +30,14 @@ abstract class _Controller with Store {
               ));
 
   @action
+  init() {
+    if (coord.coordType != null) {
+      type = coord.coordType;
+      print('Atualizado: $type');
+    }
+  }
+
+  @action
   setType(CoordType newType) {
     type = newType;
     coord.coordType = type;

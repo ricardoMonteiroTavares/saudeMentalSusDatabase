@@ -11,6 +11,7 @@ class NameInputComp extends StatelessWidget {
       child: Container(
         child: Observer(
             builder: (_) => TextFormField(
+                  initialValue: _controller.name,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Nome'),
                   onChanged: _controller.setName,

@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:saudeMentalSusDatabase/components/add_item_button/add_item_button.dart';
+import 'package:saudeMentalSusDatabase/components/edit_delete_buttons/edit_delete_buttons.dart';
 import 'components/phone_form/phone_form.dart';
 import 'controller.dart';
 
-class PhoneListComp extends StatelessWidget {
+class PhoneListComp extends StatefulWidget {
+  @override
+  _PhoneListCompState createState() => _PhoneListCompState();
+}
+
+class _PhoneListCompState extends State<PhoneListComp> {
   final Controller _controller = new Controller();
-  final phoneForm = new PhoneFormComp();
+
+  final PhoneFormComp phoneForm = new PhoneFormComp();
+
+  @override
+  void initState() {
+    _controller.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,24 +37,9 @@ class PhoneListComp extends StatelessWidget {
                 'Telefones',
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              RaisedButton(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Theme.of(context).buttonColor,
-                      ),
-                      Text(
-                        'ADICIONAR',
-                        style: TextStyle(color: Theme.of(context).buttonColor),
-                      )
-                    ],
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () async {
-                    final phone = await phoneForm.showPhoneFormDialog(context);
-                    _controller.add(phone);
-                  })
+              AddItemButtonComp(
+                onPressed: () async => _controller.add(context, phoneForm),
+              )
             ],
           ),
         ),
@@ -48,18 +48,14 @@ class PhoneListComp extends StatelessWidget {
                 child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: _controller.phones.length,
-                    itemBuilder: (_, index) => ListTile(
-                          title: Text(_controller.phones[index]),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.redAccent,
-                            ),
-                            onPressed: () {
-                              _controller.remove(index);
-                            },
-                          ),
-                        ))))
+                    itemBuilder: (_, index) {
+                      return ListTile(
+                        title: Text(_controller.getbyIndex(index)),
+                        trailing: EditDeleteButtons(
+                          deleteFunction: () => _controller.remove(index),
+                        ),
+                      );
+                    })))
       ],
     );
   }
