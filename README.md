@@ -1,16 +1,5 @@
 # saudeMentalSusDatabase
 
-A new Flutter project.
+## Sobre
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+É uma linha auxiliar do projeto Saúde Mental SUS. Este projeto, desenvolvido em Flutter, trata-se de um formulário ao qual voluntários irão preencher os dados dos locais de atendimento à saúde mental que estão vinculados ao SUS. Ao final do preenchimento, irá gerar um arquivo de banco de dados, que deverá ser enviado para a equipe do Saúde Mental SUS, com todos os dados preenchidos sobre um determinado município do Brasil. 
