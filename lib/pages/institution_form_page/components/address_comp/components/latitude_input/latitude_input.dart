@@ -9,6 +9,7 @@ class LatInputComp extends StatelessWidget {
     return Container(
       child: Observer(
           builder: (_) => TextFormField(
+                initialValue: _controller.lat,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: 'Latitude'),
                 onChanged: _controller.setLat,

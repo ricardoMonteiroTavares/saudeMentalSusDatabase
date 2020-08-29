@@ -31,6 +31,14 @@ abstract class _Controller with Store {
               ));
 
   @action
+  init() {
+    if (institution.institutionType != null) {
+      type = institution.institutionType;
+      print('Atualizado: $type');
+    }
+  }
+
+  @action
   setType(InstitutionType newType) {
     type = newType;
     institution.institutionType = type;

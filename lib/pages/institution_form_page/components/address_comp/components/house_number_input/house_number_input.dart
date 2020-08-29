@@ -9,6 +9,7 @@ class HouseNumberInputComp extends StatelessWidget {
     return Container(
       child: Observer(
           builder: (_) => TextFormField(
+                initialValue: _controller.houseNumber,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: 'Nº'),
                 onChanged: _controller.setHouseNumber,

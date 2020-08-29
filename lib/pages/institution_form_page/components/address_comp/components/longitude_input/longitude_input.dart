@@ -9,6 +9,7 @@ class LongInputComp extends StatelessWidget {
     return Container(
       child: Observer(
           builder: (_) => TextFormField(
+                initialValue: _controller.long,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: 'Longitude'),
                 onChanged: _controller.setLong,

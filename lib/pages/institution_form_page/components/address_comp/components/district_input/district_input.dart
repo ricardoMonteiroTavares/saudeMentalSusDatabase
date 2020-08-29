@@ -9,6 +9,7 @@ class DistrictInputComp extends StatelessWidget {
     return Container(
       child: Observer(
           builder: (_) => TextFormField(
+                initialValue: _controller.district,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: 'Bairro'),
                 onChanged: _controller.setDistrict,

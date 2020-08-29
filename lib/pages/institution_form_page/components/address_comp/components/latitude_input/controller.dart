@@ -10,7 +10,7 @@ abstract class _Controller with Store {
   @observable
   var address = GetIt.I.get<Address>();
 
-  double get lat => address.lat;
+  String get lat => (address.lat == null) ? '' : address.lat.toString();
 
   @action
   setLat(String newValue) {

@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'controller.dart';
 
-class TypeSelectorComp extends StatelessWidget {
+class TypeSelectorComp extends StatefulWidget {
+  @override
+  _TypeSelectorCompState createState() => _TypeSelectorCompState();
+}
+
+class _TypeSelectorCompState extends State<TypeSelectorComp> {
   final Controller _controller = new Controller();
+
+  @override
+  void initState() {
+    _controller.init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

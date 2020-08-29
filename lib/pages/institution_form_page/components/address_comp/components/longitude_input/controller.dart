@@ -10,7 +10,7 @@ abstract class _Controller with Store {
   @observable
   var address = GetIt.I.get<Address>();
 
-  double get long => address.long;
+  String get long => (address.long == null) ? '' : address.long.toString();
 
   @action
   setLong(String newValue) {
