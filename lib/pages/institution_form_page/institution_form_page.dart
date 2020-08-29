@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:saudeMentalSusDatabase/entities/address.dart';
+import 'package:saudeMentalSusDatabase/entities/institution.dart';
 import 'package:saudeMentalSusDatabase/pages/institution_form_page/components/type_selector/type_selector.dart';
 
 import 'components/address_comp/adress_comp.dart';
@@ -11,6 +13,9 @@ import 'components/regions_served_input/regions_served_input.dart';
 import 'controller.dart';
 
 class InstitutionFormPage extends StatefulWidget {
+  final Institution institutionEdit;
+
+  const InstitutionFormPage({Key key, this.institutionEdit}) : super(key: key);
   @override
   _InstitutionFormPageState createState() => _InstitutionFormPageState();
 }
@@ -20,7 +25,7 @@ class _InstitutionFormPageState extends State<InstitutionFormPage> {
 
   @override
   void initState() {
-    _controller.init();
+    _controller.init(widget.institutionEdit);
     super.initState();
   }
 

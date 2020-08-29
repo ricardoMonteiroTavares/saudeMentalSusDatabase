@@ -46,14 +46,10 @@ class _EmailListCompState extends State<EmailListComp> {
                     itemCount: _controller.emails.length,
                     itemBuilder: (_, index) => ListTile(
                           title: Text(_controller.emails[index]),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.redAccent,
-                            ),
-                            onPressed: () {
-                              _controller.remove(index);
-                            },
+                          trailing: EditDeleteButtons(
+                            deleteFunction: () => _controller.remove(index),
+                            editFunction: () =>
+                                _controller.edit(context, index),
                           ),
                         ))))
       ],

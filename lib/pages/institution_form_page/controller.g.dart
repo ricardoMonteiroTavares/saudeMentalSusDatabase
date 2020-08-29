@@ -12,11 +12,11 @@ mixin _$Controller on _Controller, Store {
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
-  dynamic init() {
+  dynamic init(Institution institutionEdit) {
     final _$actionInfo =
         _$_ControllerActionController.startAction(name: '_Controller.init');
     try {
-      return super.init();
+      return super.init(institutionEdit);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }

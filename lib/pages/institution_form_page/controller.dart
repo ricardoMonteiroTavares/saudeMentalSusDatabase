@@ -11,9 +11,18 @@ class Controller = _Controller with _$Controller;
 
 abstract class _Controller with Store {
   @action
-  init() {
-    resetInstitution();
-    resetAddress();
+  init(Institution institutionEdit) {
+    // Condição para criar uma nova Instituição e um novo Endereço
+    if (institutionEdit == null) {
+      resetInstitution();
+      resetAddress();
+      // Condição para editar uma Instituição e um Endereço já existente
+    } else {
+      var institution = GetIt.I.get<Institution>();
+      institution = institutionEdit;
+      var address = GetIt.I.get<Address>();
+      address = institutionEdit.address;
+    }
   }
 
   validate(BuildContext context) {

@@ -3,8 +3,20 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
 import 'controller.dart';
 
-class CoordListComp extends StatelessWidget {
+class CoordListComp extends StatefulWidget {
+  @override
+  _CoordListCompState createState() => _CoordListCompState();
+}
+
+class _CoordListCompState extends State<CoordListComp> {
   final Controller _controller = new Controller();
+
+  @override
+  void initState() {
+    _controller.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

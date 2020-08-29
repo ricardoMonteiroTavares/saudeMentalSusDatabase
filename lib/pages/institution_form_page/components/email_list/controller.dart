@@ -31,6 +31,12 @@ abstract class _Controller with Store {
     _add(email);
   }
 
+  Future<void> edit(BuildContext context, int index) async {
+    final emailForm = new EmailFormComp(emailEdit: emails[index]);
+    final email = await emailForm.showEmailFormDialog(context);
+    _edit(email, index);
+  }
+
   @action
   _add(String email) {
     if (email != null) {
@@ -49,5 +55,17 @@ abstract class _Controller with Store {
     print('Removido da lista');
     institution.emails = emails;
     print('$institution');
+  }
+
+  @action
+  _edit(String email, int index) {
+    if (email != null) {
+      emails[index] = email;
+      print('Email editado');
+      institution.emails = emails;
+      print('$institution');
+    } else {
+      print('Email veio Nulo');
+    }
   }
 }

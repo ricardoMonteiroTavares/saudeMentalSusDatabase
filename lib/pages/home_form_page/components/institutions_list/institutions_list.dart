@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
 import 'package:saudeMentalSusDatabase/pages/institution_form_page/institution_form_page.dart';
 
 import 'controller.dart';
@@ -19,25 +20,9 @@ class InstitutionListComp extends StatelessWidget {
               'Instituições',
               style: Theme.of(context).textTheme.bodyText2,
             ),
-            RaisedButton(
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: Theme.of(context).buttonColor,
-                    ),
-                    Text(
-                      'ADICIONAR',
-                      style: TextStyle(color: Theme.of(context).buttonColor),
-                    )
-                  ],
-                ),
-                color: Theme.of(context).primaryColor,
-                onPressed: () async {
-                  final institution = await Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => InstitutionFormPage()));
-                  _controller.add(institution);
-                })
+            AddItemButtonComp(
+              onPressed: () async => _controller.add(context),
+            )
           ],
         ),
       ),
@@ -47,17 +32,11 @@ class InstitutionListComp extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: _controller.institutions.length,
                   itemBuilder: (_, index) => ListTile(
-                        title: Text(_controller.institutions[index].name),
-                        trailing: IconButton(
-                          icon: Icon(
-                            Icons.close,
-                            color: Colors.redAccent,
-                          ),
-                          onPressed: () {
-                            _controller.remove(index);
-                          },
-                        ),
-                      ))))
+                      title: Text(_controller.institutions[index].name),
+                      trailing: EditDeleteButtons(
+                        deleteFunction: () => _controller.remove(index),
+                        editFunction: () => _controller.edit(context, index),
+                      )))))
     ]);
   }
 }

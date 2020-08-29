@@ -19,6 +19,16 @@ abstract class _Controller with Store {
 
   Coord getByIndex(int index) => coords[index];
 
+  @action
+  init() {
+    if ((institution.coords == null) || (institution.coords.length == 0)) {
+      coords = <Coord>[].asObservable();
+    } else {
+      coords = institution.coords;
+    }
+    print('Coords: $coords');
+  }
+
   edit(BuildContext context, int index) async {
     final coord = await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => CoordFormPage(

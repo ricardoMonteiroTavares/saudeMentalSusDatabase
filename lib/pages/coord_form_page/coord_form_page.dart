@@ -9,7 +9,7 @@ import 'controller.dart';
 class CoordFormPage extends StatefulWidget {
   final Coord coordEdit;
 
-  const CoordFormPage({Key key, @required this.coordEdit}) : super(key: key);
+  const CoordFormPage({Key key, this.coordEdit}) : super(key: key);
   @override
   _CoordFormPageState createState() => _CoordFormPageState();
 }

@@ -22,6 +22,13 @@ abstract class _Controller with Store {
   }
 
   @action
+  Future<void> edit(BuildContext context, int index) async {
+    final phoneForm = new PhoneFormComp(phoneEdit: phones[index]);
+    final phone = await phoneForm.showPhoneFormDialog(context);
+    _edit(phone, index);
+  }
+
+  @action
   init() {
     if ((institution.phones == null) || (institution.phones.length == 0)) {
       phones = <String>[].asObservable();
@@ -36,6 +43,18 @@ abstract class _Controller with Store {
     if (phone != null) {
       phones.add(phone);
       print('Adicionado na Lista');
+      institution.phones = phones;
+      print('$institution');
+    } else {
+      print('Telefone veio Nulo');
+    }
+  }
+
+  @action
+  _edit(String phone, int index) {
+    if (phone != null) {
+      phones[index] = phone;
+      print('Editado');
       institution.phones = phones;
       print('$institution');
     } else {

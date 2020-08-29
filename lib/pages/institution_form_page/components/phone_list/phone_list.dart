@@ -45,17 +45,11 @@ class _PhoneListCompState extends State<PhoneListComp> {
                     shrinkWrap: true,
                     itemCount: _controller.phones.length,
                     itemBuilder: (_, index) => ListTile(
-                          title: Text(_controller.phones[index]),
-                          trailing: IconButton(
-                            icon: Icon(
-                              Icons.close,
-                              color: Colors.redAccent,
-                            ),
-                            onPressed: () {
-                              _controller.remove(index);
-                            },
-                          ),
-                        ))))
+                        title: Text(_controller.phones[index]),
+                        trailing: EditDeleteButtons(
+                          deleteFunction: () => _controller.remove(index),
+                          editFunction: () => _controller.edit(context, index),
+                        )))))
       ],
     );
   }
