@@ -9,29 +9,37 @@ abstract class _Controller with Store {
   final formKey = GlobalKey<FormState>();
 
   @observable
-  String phone;
+  String email;
 
   @observable
   bool autoValidate = false;
 
   @action
-  setPhone(String newValue) {
-    phone = newValue;
-    print('Telefone: $phone');
+  init(String emailEdit) {
+    if ((emailEdit != null) && (emailEdit != '')) {
+      email = emailEdit;
+    }
   }
 
   @action
-  String validatePhone(String value) {
-    RegExp regExp = RegExp(r'(\(\d{2}\)\s)(\d{4,5}\-\d{4})');
+  setEmail(String newValue) {
+    email = newValue;
+    print('Email: $email');
+  }
+
+  @action
+  String validateEmail(String value) {
+    RegExp regExp = RegExp(
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
     if (regExp.hasMatch(value)) return null;
-    return 'Telefone Inválido';
+    return 'Email Inválido';
   }
 
   @action
   submit(BuildContext context) {
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      Navigator.of(context).pop(phone);
+      Navigator.of(context).pop(email);
     } else {
       autoValidate = true;
     }

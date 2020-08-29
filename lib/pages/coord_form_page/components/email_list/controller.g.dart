@@ -75,6 +75,17 @@ mixin _$Controller on _Controller, Store {
   }
 
   @override
+  dynamic _edit(String email, int index) {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller._edit');
+    try {
+      return super._edit(email, index);
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 coord: ${coord},

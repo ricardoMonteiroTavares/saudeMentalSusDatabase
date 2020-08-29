@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:saudeMentalSusDatabase/components/add_item_button/add_item_button.dart';
-import 'package:saudeMentalSusDatabase/components/edit_delete_buttons/edit_delete_buttons.dart';
-import 'components/email_form/email_form.dart';
+import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
 import 'controller.dart';
 
 class EmailListComp extends StatefulWidget {
@@ -12,8 +10,6 @@ class EmailListComp extends StatefulWidget {
 
 class _EmailListCompState extends State<EmailListComp> {
   final Controller _controller = new Controller();
-
-  final EmailFormComp emailForm = new EmailFormComp();
 
   @override
   void initState() {
@@ -38,7 +34,7 @@ class _EmailListCompState extends State<EmailListComp> {
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               AddItemButtonComp(
-                onPressed: () async => _controller.add(context, emailForm),
+                onPressed: () async => _controller.add(context),
               )
             ],
           ),
@@ -52,6 +48,8 @@ class _EmailListCompState extends State<EmailListComp> {
                           title: Text(_controller.getbyIndex(index)),
                           trailing: EditDeleteButtons(
                             deleteFunction: () => _controller.remove(index),
+                            editFunction: () =>
+                                _controller.edit(context, index),
                           ),
                         ))))
       ],

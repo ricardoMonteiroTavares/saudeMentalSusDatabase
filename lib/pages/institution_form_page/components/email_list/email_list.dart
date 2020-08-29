@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'components/email_form/email_form.dart';
+import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
 import 'controller.dart';
 
-class EmailListComp extends StatelessWidget {
+class EmailListComp extends StatefulWidget {
+  @override
+  _EmailListCompState createState() => _EmailListCompState();
+}
+
+class _EmailListCompState extends State<EmailListComp> {
   final Controller _controller = new Controller();
-  final emailForm = new EmailFormComp();
+
+  @override
+  void initState() {
+    _controller.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,24 +33,9 @@ class EmailListComp extends StatelessWidget {
                 'Emails',
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              RaisedButton(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Theme.of(context).buttonColor,
-                      ),
-                      Text(
-                        'ADICIONAR',
-                        style: TextStyle(color: Theme.of(context).buttonColor),
-                      )
-                    ],
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () async {
-                    final email = await emailForm.showEmailFormDialog(context);
-                    _controller.add(email);
-                  })
+              AddItemButtonComp(
+                onPressed: () async => _controller.add(context),
+              )
             ],
           ),
         ),

@@ -4,23 +4,29 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'controller.dart';
 
-class EmailFormComp {
+class PhoneFormComp {
+  final String phoneEdit;
   final Controller _controller = new Controller();
-  showEmailFormDialog(BuildContext context) async {
+
+  PhoneFormComp({this.phoneEdit});
+  showPhoneFormDialog(BuildContext context) async {
+    _controller.init(phoneEdit);
+
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Adicionar Email'),
+        title: Text('Adicionar Telefone'),
         content: Container(
             child: Form(
                 key: _controller.formKey,
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Observer(
                       builder: (_) => TextFormField(
+                            initialValue: _controller.phone,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                labelText: 'Email'),
-                            onSaved: _controller.setEmail,
+                                labelText: 'Telefone'),
+                            onSaved: _controller.setPhone,
                             validator: _controller.validatePhone,
                             style: Theme.of(context).textTheme.bodyText1,
                           )),

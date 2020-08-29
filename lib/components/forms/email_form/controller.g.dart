@@ -42,6 +42,17 @@ mixin _$Controller on _Controller, Store {
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
+  dynamic init(String emailEdit) {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller.init');
+    try {
+      return super.init(emailEdit);
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setEmail(String newValue) {
     final _$actionInfo =
         _$_ControllerActionController.startAction(name: '_Controller.setEmail');
@@ -53,11 +64,11 @@ mixin _$Controller on _Controller, Store {
   }
 
   @override
-  String validatePhone(String value) {
+  String validateEmail(String value) {
     final _$actionInfo = _$_ControllerActionController.startAction(
-        name: '_Controller.validatePhone');
+        name: '_Controller.validateEmail');
     try {
-      return super.validatePhone(value);
+      return super.validateEmail(value);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }

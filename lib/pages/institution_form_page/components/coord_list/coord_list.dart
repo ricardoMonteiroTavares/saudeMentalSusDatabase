@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:saudeMentalSusDatabase/components/add_item_button/add_item_button.dart';
-import 'package:saudeMentalSusDatabase/components/edit_delete_buttons/edit_delete_buttons.dart';
-import 'package:saudeMentalSusDatabase/entities/coord.dart';
+import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
 import 'controller.dart';
 
 class CoordListComp extends StatelessWidget {

@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'components/phone_form/phone_form.dart';
+import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
 import 'controller.dart';
 
-class PhoneListComp extends StatelessWidget {
+class PhoneListComp extends StatefulWidget {
+  @override
+  _PhoneListCompState createState() => _PhoneListCompState();
+}
+
+class _PhoneListCompState extends State<PhoneListComp> {
   final Controller _controller = new Controller();
-  final phoneForm = new PhoneFormComp();
+
+  @override
+  void initState() {
+    _controller.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,24 +33,9 @@ class PhoneListComp extends StatelessWidget {
                 'Telefones',
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              RaisedButton(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Theme.of(context).buttonColor,
-                      ),
-                      Text(
-                        'ADICIONAR',
-                        style: TextStyle(color: Theme.of(context).buttonColor),
-                      )
-                    ],
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () async {
-                    final phone = await phoneForm.showPhoneFormDialog(context);
-                    _controller.add(phone);
-                  })
+              AddItemButtonComp(
+                onPressed: () async => _controller.add(context),
+              )
             ],
           ),
         ),
