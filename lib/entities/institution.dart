@@ -2,6 +2,7 @@ import 'package:saudeMentalSusDatabase/entities/address.dart';
 import 'package:saudeMentalSusDatabase/entities/coord.dart';
 import 'package:saudeMentalSusDatabase/entities/institution_type.dart';
 import 'package:saudeMentalSusDatabase/entities/reception.dart';
+import 'package:saudeMentalSusDatabase/entities/region.dart';
 import 'package:saudeMentalSusDatabase/util/enum_converter.dart';
 
 class Institution {
@@ -12,7 +13,7 @@ class Institution {
   InstitutionType institutionType;
   List<Coord> coords;
   List<Reception> reception;
-  String regions;
+  List<Region> regions;
 
   Institution(
       {this.name,
@@ -31,7 +32,9 @@ class Institution {
     data['phone'] = this.phones;
     data['email'] = this.emails;
     data['address'] = this.address.toJson();
-    data['region'] = this.regions;
+    if (this.regions != null) {
+      data['region'] = this.regions.map((v) => v.toJson()).toList();
+    }
     if (this.coords != null) {
       data['coord'] = this.coords.map((v) => v.toJson()).toList();
     }

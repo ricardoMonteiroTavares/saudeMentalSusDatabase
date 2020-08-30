@@ -96,7 +96,8 @@ abstract class _Controller with Store {
                   child: Text('Longitude Inválido'),
                 ),
               ));
-    } else if ((institution.regions == null) || (institution.regions == '')) {
+    } else if ((institution.regions == null) ||
+        (institution.regions.length == 0)) {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(

@@ -9,7 +9,7 @@ import 'components/coord_list/coord_list.dart';
 import 'components/email_list/email_list.dart';
 import 'components/name_input/name_input.dart';
 import 'components/phone_list/phone_list.dart';
-import 'components/regions_served_input/regions_served_input.dart';
+import 'components/regions_served_list/regions_served_list.dart';
 import 'controller.dart';
 
 class InstitutionFormPage extends StatefulWidget {
@@ -70,9 +70,9 @@ class _InstitutionFormPageState extends State<InstitutionFormPage> {
               ),
               EmailListComp(),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
-              RegionsServedInputComp(),
+              RegionsServedListComp(),
               SizedBox(
                 height: 10,
               ),

@@ -13,7 +13,7 @@ abstract class _Controller with Store {
   var institution = GetIt.I.get<Institution>();
 
   @observable
-  ObservableList<String> emails = <String>[].asObservable();
+  ObservableList<String> emails;
 
   @action
   init() {

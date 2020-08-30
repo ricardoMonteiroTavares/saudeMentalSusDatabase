@@ -72,6 +72,17 @@ mixin _$Controller on _Controller, Store {
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
+  dynamic init(Reception attendanceEdit) {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller.init');
+    try {
+      return super.init(attendanceEdit);
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic setOpeningHour(String newValue) {
     final _$actionInfo = _$_ControllerActionController.startAction(
         name: '_Controller.setOpeningHour');
