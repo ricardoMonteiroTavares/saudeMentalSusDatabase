@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:saudeMentalSusDatabase/entities/reception.dart';
 import 'controller.dart';
 
 class AttendanceFormComp {
+  final Reception attendanceEdit;
   final Controller _controller = new Controller();
+
+  AttendanceFormComp({this.attendanceEdit});
   showAttendanceFormDialog(BuildContext context) async {
+    _controller.init(attendanceEdit);
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -36,6 +41,7 @@ class AttendanceFormComp {
                           ))),
                   Observer(
                       builder: (_) => TextFormField(
+                            initialValue: _controller.openingHour,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Hora de Abertura'),
@@ -48,6 +54,7 @@ class AttendanceFormComp {
                   ),
                   Observer(
                       builder: (_) => TextFormField(
+                            initialValue: _controller.closingHour,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Hora de Fechamento'),

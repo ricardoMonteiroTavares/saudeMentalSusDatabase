@@ -39,6 +39,13 @@ mixin _$Controller on _Controller, Store {
     });
   }
 
+  final _$editAsyncAction = AsyncAction('_Controller.edit');
+
+  @override
+  Future<void> edit(BuildContext context, int index) {
+    return _$editAsyncAction.run(() => super.edit(context, index));
+  }
+
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
@@ -58,6 +65,17 @@ mixin _$Controller on _Controller, Store {
         _$_ControllerActionController.startAction(name: '_Controller._add');
     try {
       return super._add(phone);
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _edit(String phone, int index) {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller._edit');
+    try {
+      return super._edit(phone, index);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }

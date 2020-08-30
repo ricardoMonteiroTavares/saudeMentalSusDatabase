@@ -19,6 +19,15 @@ abstract class _Controller with Store {
   bool autoValidate = false;
 
   @action
+  init(Reception attendanceEdit) {
+    if (attendanceEdit != null) {
+      openingHour = attendanceEdit.openingHour;
+      closingHour = attendanceEdit.closingHour;
+      daySelected = _days[attendanceEdit.weekDay - 1];
+    }
+  }
+
+  @action
   setOpeningHour(String newValue) {
     openingHour = newValue;
     print('Hora Abertura: $openingHour');
