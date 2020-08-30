@@ -10,6 +10,14 @@ class Coord {
 
   Coord({this.name, this.coordType, this.phones, this.emails});
 
+  Coord.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    coordType =
+        EnumConverter.convertStringToEnum(json['type'], CoordType.values);
+    phones = json['phone'].cast<String>();
+    emails = json['email'].cast<String>();
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;

@@ -7,6 +7,16 @@ class City {
 
   City({this.name, this.institutions, this.federationUnity});
 
+  City.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    federationUnity = json['federationUnity'];
+    if (json['institutions'] != null) {
+      institutions = new List<Institution>();
+      json['servicesList'].forEach((v) {
+        institutions.add(new Institution.fromJson(v));
+      });
+    }
+  }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;

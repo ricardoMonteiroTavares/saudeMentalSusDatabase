@@ -13,6 +13,14 @@ class Address {
     this.long,
   });
 
+  Address.fromJson(Map<String, dynamic> json) {
+    street = json['street'];
+    district = json['district'];
+    houseNumber = json['houseNumber'];
+    lat = json['lat'];
+    long = json['long'];
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['street'] = this.street;
