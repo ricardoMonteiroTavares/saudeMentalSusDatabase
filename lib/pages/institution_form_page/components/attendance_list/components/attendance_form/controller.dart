@@ -18,12 +18,31 @@ abstract class _Controller with Store {
   @observable
   bool autoValidate = false;
 
+  @observable
+  ObservableMap<String, bool> values = {
+    'Domingo': false,
+    'Segunda-Feira': false,
+    'Terça-Feira': false,
+    'Quarta-Feira': false,
+    'Quinta-Feira': false,
+    'Sexta-Feira': false,
+    'Sábado': false
+  }.asObservable();
+
+  List<CheckboxListTile> getDays() => values.keys.map((String key) {
+        return new CheckboxListTile(
+          title: new Text(key),
+          value: values[key],
+          onChanged: (bool value) => setValues(key, value),
+        );
+      }).toList();
+
   @action
   init(Reception attendanceEdit) {
     if (attendanceEdit != null) {
       openingHour = attendanceEdit.openingHour;
       closingHour = attendanceEdit.closingHour;
-      daySelected = _days[attendanceEdit.weekDay - 1];
+      // daySelected = _days[attendanceEdit.weekDay - 1];
     }
   }
 
@@ -74,9 +93,7 @@ abstract class _Controller with Store {
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
       Reception reception = new Reception(
-          openingHour: openingHour,
-          closingHour: closingHour,
-          weekDay: (_days.indexOf(daySelected) + 1));
+          openingHour: openingHour, closingHour: closingHour, weekDay: null);
       Navigator.of(context).pop(reception);
     } else {
       autoValidate = true;
@@ -86,29 +103,9 @@ abstract class _Controller with Store {
   @observable
   String daySelected = 'Domingo';
 
-  final _days = [
-    'Domingo',
-    'Segunda-Feira',
-    'Terça-Feira',
-    'Quarta-Feira',
-    'Quinta-Feira',
-    'Sexta-Feira',
-    'Sábado',
-  ];
-
-  List<DropdownMenuItem<String>> getDays(BuildContext context) => _days
-      .map<DropdownMenuItem<String>>((String value) => DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-          ))
-      .toList();
-
   @action
-  setDaySelected(String newValue) {
-    daySelected = newValue;
-    print('Dia: $daySelected');
+  setValues(String key, bool newValue) {
+    values[key] = newValue;
+    print(values[key]);
   }
 }

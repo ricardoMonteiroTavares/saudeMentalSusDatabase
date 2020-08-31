@@ -54,6 +54,21 @@ mixin _$Controller on _Controller, Store {
     });
   }
 
+  final _$valuesAtom = Atom(name: '_Controller.values');
+
+  @override
+  ObservableMap<String, bool> get values {
+    _$valuesAtom.reportRead();
+    return super.values;
+  }
+
+  @override
+  set values(ObservableMap<String, bool> value) {
+    _$valuesAtom.reportWrite(value, super.values, () {
+      super.values = value;
+    });
+  }
+
   final _$daySelectedAtom = Atom(name: '_Controller.daySelected');
 
   @override
@@ -138,11 +153,11 @@ mixin _$Controller on _Controller, Store {
   }
 
   @override
-  dynamic setDaySelected(String newValue) {
+  dynamic setValues(String key, bool newValue) {
     final _$actionInfo = _$_ControllerActionController.startAction(
-        name: '_Controller.setDaySelected');
+        name: '_Controller.setValues');
     try {
-      return super.setDaySelected(newValue);
+      return super.setValues(key, newValue);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }
@@ -154,6 +169,7 @@ mixin _$Controller on _Controller, Store {
 openingHour: ${openingHour},
 closingHour: ${closingHour},
 autoValidate: ${autoValidate},
+values: ${values},
 daySelected: ${daySelected}
     ''';
   }
