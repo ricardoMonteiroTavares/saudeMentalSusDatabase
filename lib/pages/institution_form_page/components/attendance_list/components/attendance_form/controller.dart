@@ -40,6 +40,29 @@ abstract class _Controller with Store {
   }
 
   @action
+  String validateClosingHour(String value) {
+    String error = validateHour(value);
+    if ((error == null) && (openingHour != null)) {
+      List<String> aux = ('$closingHour:$openingHour').split(':');
+      List<int> aux2 = List.generate(4, (index) {
+        int fator = (index >= 2) ? -1 : 1;
+        if ((index == 0) || (index == 2)) {
+          return (int.tryParse(aux[index]) *
+              60 *
+              fator); // Converto para minutos
+        }
+        return (int.tryParse(aux[index]) * fator);
+      });
+      int difference = aux2.reduce((value, element) => value + element);
+
+      error = (difference > 0)
+          ? null
+          : 'Hora de fechamento não é posterior do que a abertura';
+    }
+    return error;
+  }
+
+  @action
   String validateHour(String value) {
     RegExp regExp = RegExp(r'^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
     if (regExp.hasMatch(value)) return null;

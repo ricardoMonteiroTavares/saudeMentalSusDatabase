@@ -45,6 +45,7 @@ class AttendanceFormComp {
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Hora de Abertura'),
+                            onChanged: _controller.setOpeningHour,
                             onSaved: _controller.setOpeningHour,
                             validator: _controller.validateHour,
                             style: Theme.of(context).textTheme.bodyText1,
@@ -58,8 +59,9 @@ class AttendanceFormComp {
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Hora de Fechamento'),
+                            onChanged: _controller.setClosingHour,
                             onSaved: _controller.setClosingHour,
-                            validator: _controller.validateHour,
+                            validator: _controller.validateClosingHour,
                             style: Theme.of(context).textTheme.bodyText1,
                           )),
                 ]))),

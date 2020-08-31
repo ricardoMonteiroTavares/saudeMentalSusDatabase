@@ -105,6 +105,17 @@ mixin _$Controller on _Controller, Store {
   }
 
   @override
+  String validateClosingHour(String value) {
+    final _$actionInfo = _$_ControllerActionController.startAction(
+        name: '_Controller.validateClosingHour');
+    try {
+      return super.validateClosingHour(value);
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String validateHour(String value) {
     final _$actionInfo = _$_ControllerActionController.startAction(
         name: '_Controller.validateHour');
