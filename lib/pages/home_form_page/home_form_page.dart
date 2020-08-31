@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:saudeMentalSusDatabase/entities/city.dart';
 
 import 'components/city_input/city_input.dart';
 import 'components/federation_unity_selector/federation_unity_selector.dart';
 import 'components/institutions_list/institutions_list.dart';
 import 'controller.dart';
 
-class HomeFormPage extends StatelessWidget {
+class HomeFormPage extends StatefulWidget {
+  final City cityEdit;
+
+  const HomeFormPage({Key key, this.cityEdit}) : super(key: key);
+  @override
+  _HomeFormPageState createState() => _HomeFormPageState();
+}
+
+class _HomeFormPageState extends State<HomeFormPage> {
   final Controller _controller = new Controller();
+
+  @override
+  void initState() {
+    _controller.init(widget.cityEdit);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

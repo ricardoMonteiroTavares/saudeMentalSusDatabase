@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
-import 'components/attendance_form/attendance_form.dart';
 import 'controller.dart';
 
 class AttendanceListComp extends StatefulWidget {

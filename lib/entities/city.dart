@@ -10,7 +10,7 @@ class City {
   City.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     federationUnity = json['federationUnity'];
-    if (json['institutions'] != null) {
+    if (json['servicesList'] != null) {
       institutions = new List<Institution>();
       json['servicesList'].forEach((v) {
         institutions.add(new Institution.fromJson(v));

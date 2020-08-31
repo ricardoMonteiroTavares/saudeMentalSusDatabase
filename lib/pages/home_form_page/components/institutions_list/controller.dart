@@ -15,9 +15,19 @@ abstract class _Controller with Store {
   var city = GetIt.I.get<City>();
 
   @observable
-  ObservableList<Institution> institutions = <Institution>[].asObservable();
+  ObservableList<Institution> institutions;
 
   Institution getByIndex(int index) => institutions[index];
+
+  @action
+  init() {
+    if ((city.institutions == null) || (city.institutions.length == 0)) {
+      institutions = <Institution>[].asObservable();
+    } else {
+      institutions = city.institutions.asObservable();
+    }
+    print('Instituições: $institutions');
+  }
 
   edit(BuildContext context, int index) async {
     final institution = await Navigator.of(context).push(MaterialPageRoute(

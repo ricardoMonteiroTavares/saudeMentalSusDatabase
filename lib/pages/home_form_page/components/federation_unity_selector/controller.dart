@@ -44,6 +44,13 @@ abstract class _Controller with Store {
     'TO'
   ];
 
+  @action
+  init() {
+    if (city.federationUnity != null) {
+      fuSelected = city.federationUnity;
+    }
+  }
+
   List<DropdownMenuItem<String>> getFus(BuildContext context) =>
       _federationUnits
           .map<DropdownMenuItem<String>>(

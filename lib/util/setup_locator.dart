@@ -11,7 +11,6 @@ void setupLocator() {
   locator.registerLazySingleton<Institution>(() => Institution());
 
   locator.registerLazySingleton<Address>(() => Address());
-  locator.registerLazySingleton<City>(() => City());
 }
 
 void resetCoord() {
@@ -24,4 +23,12 @@ void resetInstitution() {
 
 void resetAddress() {
   locator.resetLazySingleton<Address>();
+}
+
+void initCity(City city) {
+  if (city == null) {
+    locator.registerLazySingleton<City>(() => City());
+  } else {
+    locator.registerLazySingleton(() => city);
+  }
 }

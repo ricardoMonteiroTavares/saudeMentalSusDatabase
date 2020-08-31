@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:saudeMentalSusDatabase/components/buttons/buttons.dart';
-import 'package:saudeMentalSusDatabase/pages/institution_form_page/institution_form_page.dart';
 
 import 'controller.dart';
 
-class InstitutionListComp extends StatelessWidget {
+class InstitutionListComp extends StatefulWidget {
+  @override
+  _InstitutionListCompState createState() => _InstitutionListCompState();
+}
+
+class _InstitutionListCompState extends State<InstitutionListComp> {
   final Controller _controller = new Controller();
+
+  @override
+  void initState() {
+    _controller.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: [

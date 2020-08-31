@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:saudeMentalSusDatabase/pages/select_option_page/select_option_page.dart';
 import 'package:saudeMentalSusDatabase/util/setup_locator.dart';
-
-import 'pages/home_form_page/home_form_page.dart';
 
 void main() {
   setupLocator();
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         buttonColor: Colors.white,
       ),
-      home: HomeFormPage(),
+      home: SelectOptionPage(),
     );
   }
 }

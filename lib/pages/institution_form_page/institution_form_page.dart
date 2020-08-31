@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:saudeMentalSusDatabase/entities/address.dart';
 import 'package:saudeMentalSusDatabase/entities/institution.dart';
 import 'package:saudeMentalSusDatabase/pages/institution_form_page/components/type_selector/type_selector.dart';
 

@@ -42,6 +42,17 @@ mixin _$Controller on _Controller, Store {
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
+  dynamic init() {
+    final _$actionInfo =
+        _$_ControllerActionController.startAction(name: '_Controller.init');
+    try {
+      return super.init();
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic _add(Institution institution) {
     final _$actionInfo =
         _$_ControllerActionController.startAction(name: '_Controller._add');

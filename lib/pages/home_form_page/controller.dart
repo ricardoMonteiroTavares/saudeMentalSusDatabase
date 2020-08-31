@@ -1,16 +1,27 @@
 import 'dart:convert';
 
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:saudeMentalSusDatabase/entities/city.dart';
+import 'package:saudeMentalSusDatabase/util/setup_locator.dart';
 
 part 'controller.g.dart';
 
 class Controller = _Controller with _$Controller;
 
 abstract class _Controller with Store {
+  @action
+  init(City cityEdit) {
+    // if (cityEdit != null) {
+    //var city = GetIt.I.get<City>();
+    //city = cityEdit;
+    initCity(cityEdit);
+    //}
+  }
+
   validate(BuildContext context) {
     var city = GetIt.I.get<City>();
     if ((city.name == null) || (city.name.length <= 2)) {

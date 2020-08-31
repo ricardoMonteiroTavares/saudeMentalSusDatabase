@@ -10,6 +10,7 @@ class CityInputComp extends StatelessWidget {
     return Container(
       child: Observer(
           builder: (_) => TextFormField(
+                initialValue: _controller.cityName,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), labelText: 'Município'),
                 onChanged: _controller.setCity,
