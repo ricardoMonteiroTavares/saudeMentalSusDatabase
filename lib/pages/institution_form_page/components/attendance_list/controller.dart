@@ -36,7 +36,7 @@ abstract class _Controller with Store {
         (institution.reception.length == 0)) {
       reception = <Reception>[].asObservable();
     } else {
-      reception = institution.reception;
+      reception = institution.reception.asObservable();
     }
     print('Atendimentos: $reception');
   }

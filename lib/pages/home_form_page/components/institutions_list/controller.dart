@@ -69,7 +69,7 @@ abstract class _Controller with Store {
       institutions[index] = institution;
       print('Editado');
       city.institutions = institutions;
-      print('$city');
+      print('$institutions');
     } else {
       print('Coordenador veio Nulo');
     }

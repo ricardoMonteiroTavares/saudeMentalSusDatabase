@@ -36,7 +36,7 @@ abstract class _Controller with Store {
     if ((coord.phones == null) || (coord.phones.length == 0)) {
       phones = <String>[].asObservable();
     } else {
-      phones = coord.phones;
+      phones = coord.phones.asObservable();
     }
     print('Telefones: $phones');
   }

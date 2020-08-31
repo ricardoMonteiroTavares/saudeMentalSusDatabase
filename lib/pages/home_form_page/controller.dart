@@ -15,11 +15,7 @@ class Controller = _Controller with _$Controller;
 abstract class _Controller with Store {
   @action
   init(City cityEdit) {
-    // if (cityEdit != null) {
-    //var city = GetIt.I.get<City>();
-    //city = cityEdit;
     initCity(cityEdit);
-    //}
   }
 
   validate(BuildContext context) {

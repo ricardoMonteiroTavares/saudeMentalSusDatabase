@@ -33,7 +33,7 @@ abstract class _Controller with Store {
     if ((institution.phones == null) || (institution.phones.length == 0)) {
       phones = <String>[].asObservable();
     } else {
-      phones = institution.phones;
+      phones = institution.phones.asObservable();
     }
     print('Telefones: $phones');
   }

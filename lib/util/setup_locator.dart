@@ -14,15 +14,18 @@ void setupLocator() {
 }
 
 void resetCoord() {
-  locator.resetLazySingleton<Coord>();
+  locator.unregister<Coord>();
+  locator.registerLazySingleton<Coord>(() => Coord());
 }
 
 void resetInstitution() {
-  locator.resetLazySingleton<Institution>();
+  locator.unregister<Institution>();
+  locator.registerLazySingleton<Institution>(() => Institution());
 }
 
 void resetAddress() {
-  locator.resetLazySingleton<Address>();
+  locator.unregister<Address>();
+  locator.registerLazySingleton<Address>(() => Address());
 }
 
 void initCity(City city) {
@@ -30,5 +33,26 @@ void initCity(City city) {
     locator.registerLazySingleton<City>(() => City());
   } else {
     locator.registerLazySingleton(() => city);
+  }
+}
+
+void initInstitution(Institution institution) {
+  if (institution != null) {
+    locator.unregister<Institution>();
+    locator.registerLazySingleton<Institution>(() => institution);
+  }
+}
+
+void initAddress(Address address) {
+  if (address != null) {
+    locator.unregister<Address>();
+    locator.registerLazySingleton<Address>(() => address);
+  }
+}
+
+void initCoord(Coord coord) {
+  if (coord != null) {
+    locator.unregister<Coord>();
+    locator.registerLazySingleton<Coord>(() => coord);
   }
 }

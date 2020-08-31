@@ -24,7 +24,7 @@ abstract class _Controller with Store {
     if ((institution.coords == null) || (institution.coords.length == 0)) {
       coords = <Coord>[].asObservable();
     } else {
-      coords = institution.coords;
+      coords = institution.coords.asObservable();
     }
     print('Coords: $coords');
   }

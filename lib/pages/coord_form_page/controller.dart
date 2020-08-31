@@ -16,8 +16,7 @@ abstract class _Controller with Store {
       resetCoord();
       // Condição para editar um coordenador já existente
     } else {
-      var coord = GetIt.I.get<Coord>();
-      coord = coordEdit;
+      initCoord(coordEdit);
     }
   }
 

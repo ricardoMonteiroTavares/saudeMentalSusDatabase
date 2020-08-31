@@ -25,7 +25,7 @@ abstract class _Controller with Store {
     if ((institution.regions == null) || (institution.regions.length == 0)) {
       regions = <Region>[].asObservable();
     } else {
-      regions = institution.regions;
+      regions = institution.regions.asObservable();
     }
     print('Regiões: $regions');
   }

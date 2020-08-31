@@ -20,7 +20,7 @@ abstract class _Controller with Store {
     if ((institution.emails == null) || (institution.emails.length == 0)) {
       emails = <String>[].asObservable();
     } else {
-      emails = institution.emails;
+      emails = institution.emails.asObservable();
     }
     print('emails: $emails');
   }

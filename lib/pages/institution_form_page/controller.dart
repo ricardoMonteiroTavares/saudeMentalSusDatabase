@@ -18,10 +18,8 @@ abstract class _Controller with Store {
       resetAddress();
       // Condição para editar uma Instituição e um Endereço já existente
     } else {
-      var institution = GetIt.I.get<Institution>();
-      institution = institutionEdit;
-      var address = GetIt.I.get<Address>();
-      address = institutionEdit.address;
+      initInstitution(institutionEdit);
+      initAddress(institutionEdit.address);
     }
   }
 
