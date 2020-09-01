@@ -68,7 +68,8 @@ abstract class _Controller with Store {
   @action
   _edit(Coord coord, int index) {
     if (coord != null) {
-      coords[index] = coord;
+      coords.removeAt(index);
+      coords.insert(index, coord);
       print('Editado');
       institution.coords = coords;
       print('$coords');

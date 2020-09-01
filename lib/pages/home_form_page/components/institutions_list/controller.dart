@@ -66,7 +66,8 @@ abstract class _Controller with Store {
   @action
   _edit(Institution institution, int index) {
     if (institution != null) {
-      institutions[index] = institution;
+      institutions.removeAt(index);
+      institutions.insert(index, institution);
       print('Editado');
       city.institutions = institutions;
       print('$institutions');

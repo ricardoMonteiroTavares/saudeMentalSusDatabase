@@ -46,7 +46,7 @@ class _CoordListCompState extends State<CoordListComp> {
                     itemCount: _controller.coords.length,
                     itemBuilder: (_, index) {
                       return ListTile(
-                          title: Text(_controller.getByIndex(index).name),
+                          title: Text(_controller.coords[index].name),
                           trailing: EditDeleteButtons(
                             editFunction: () =>
                                 _controller.edit(context, index),
