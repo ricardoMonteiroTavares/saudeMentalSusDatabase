@@ -53,22 +53,22 @@ mixin _$Controller on _Controller, Store {
   }
 
   @override
-  dynamic _add(Reception attendance) {
+  dynamic _add(List<Reception> attendanceList) {
     final _$actionInfo =
         _$_ControllerActionController.startAction(name: '_Controller._add');
     try {
-      return super._add(attendance);
+      return super._add(attendanceList);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic _edit(Reception attendance, int index) {
+  dynamic _edit(List<Reception> attendanceList, int index) {
     final _$actionInfo =
         _$_ControllerActionController.startAction(name: '_Controller._edit');
     try {
-      return super._edit(attendance, index);
+      return super._edit(attendanceList, index);
     } finally {
       _$_ControllerActionController.endAction(_$actionInfo);
     }

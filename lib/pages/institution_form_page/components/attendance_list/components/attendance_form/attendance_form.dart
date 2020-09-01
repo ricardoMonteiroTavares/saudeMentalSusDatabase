@@ -18,27 +18,12 @@ class AttendanceFormComp {
         content: Container(
             child: Form(
                 key: _controller.formKey,
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                child: SingleChildScrollView(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
                   Observer(
-                      builder: (_) => Container(
-                              child: Row(
-                            children: [
-                              Text(
-                                'Dia da Semana:',
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Observer(
-                                builder: (_) => DropdownButton<String>(
-                                  value: _controller.daySelected,
-                                  items: _controller.getDays(context),
-                                  onChanged: _controller.setDaySelected,
-                                ),
-                              ),
-                            ],
-                          ))),
+                      builder: (_) => Column(
+                            children: _controller.getDays(),
+                          )),
                   Observer(
                       builder: (_) => TextFormField(
                             initialValue: _controller.openingHour,
@@ -64,7 +49,7 @@ class AttendanceFormComp {
                             validator: _controller.validateClosingHour,
                             style: Theme.of(context).textTheme.bodyText1,
                           )),
-                ]))),
+                ])))),
         actions: [
           FlatButton(
               child: Text('CONFIRMAR'),

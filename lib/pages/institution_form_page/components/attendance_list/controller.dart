@@ -19,8 +19,9 @@ abstract class _Controller with Store {
 
   Future<void> add(BuildContext context) async {
     final attendanceForm = new AttendanceFormComp();
-    final attendance = await attendanceForm.showAttendanceFormDialog(context);
-    _add(attendance);
+    final attendanceList =
+        await attendanceForm.showAttendanceFormDialog(context);
+    _add(attendanceList);
   }
 
   Future<void> edit(BuildContext context, int index) async {
@@ -42,9 +43,9 @@ abstract class _Controller with Store {
   }
 
   @action
-  _add(Reception attendance) {
-    if (attendance != null) {
-      reception.add(attendance);
+  _add(List<Reception> attendanceList) {
+    if ((attendanceList != null) && (attendanceList.length > 0)) {
+      reception.addAll(attendanceList);
       print('Adicionado na Lista');
       institution.reception = reception;
       print('$institution');
@@ -54,9 +55,11 @@ abstract class _Controller with Store {
   }
 
   @action
-  _edit(Reception attendance, int index) {
-    if (attendance != null) {
-      reception[index] = attendance;
+  _edit(List<Reception> attendanceList, int index) {
+    if ((attendanceList != null) && (attendanceList.length > 0)) {
+      reception.removeAt(index);
+      reception.insertAll(index, attendanceList);
+      // reception[index] = attendance;
       print('Editado');
       institution.reception = reception;
       print('$institution');

@@ -18,12 +18,31 @@ abstract class _Controller with Store {
   @observable
   bool autoValidate = false;
 
+  @observable
+  ObservableMap<String, bool> values = {
+    'Domingo': false,
+    'Segunda-Feira': false,
+    'Terça-Feira': false,
+    'Quarta-Feira': false,
+    'Quinta-Feira': false,
+    'Sexta-Feira': false,
+    'Sábado': false
+  }.asObservable();
+
+  List<CheckboxListTile> getDays() => values.keys.map((String key) {
+        return new CheckboxListTile(
+          title: new Text(key),
+          value: values[key],
+          onChanged: (bool value) => setValues(key, value),
+        );
+      }).toList();
+
   @action
   init(Reception attendanceEdit) {
     if (attendanceEdit != null) {
       openingHour = attendanceEdit.openingHour;
       closingHour = attendanceEdit.closingHour;
-      daySelected = _days[attendanceEdit.weekDay - 1];
+      values[_convertIntToDay(attendanceEdit.weekDay)] = true;
     }
   }
 
@@ -69,46 +88,81 @@ abstract class _Controller with Store {
     return 'Hora Inválida';
   }
 
+  bool _validateCheckBox() {
+    bool flag = false;
+    values.forEach((key, value) {
+      if (value) {
+        flag = true;
+      }
+    });
+    return flag;
+  }
+
   @action
   submit(BuildContext context) {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState.validate() && _validateCheckBox()) {
       formKey.currentState.save();
-      Reception reception = new Reception(
-          openingHour: openingHour,
-          closingHour: closingHour,
-          weekDay: (_days.indexOf(daySelected) + 1));
-      Navigator.of(context).pop(reception);
+      List<Reception> l = [];
+      values.forEach((key, value) {
+        if (value) {
+          l.add(new Reception(
+              openingHour: openingHour,
+              closingHour: closingHour,
+              weekDay: _convertDayToInt(key)));
+        }
+      });
+      print(l.toString());
+      Navigator.of(context).pop(l);
     } else {
       autoValidate = true;
     }
   }
 
-  @observable
-  String daySelected = 'Domingo';
+  int _convertDayToInt(String day) {
+    switch (day) {
+      case 'Domingo':
+        return 1;
+      case 'Segunda-Feira':
+        return 2;
+      case 'Terça-Feira':
+        return 3;
+      case 'Quarta-Feira':
+        return 4;
+      case 'Quinta-Feira':
+        return 5;
+      case 'Sexta-Feira':
+        return 6;
+      case 'Sábado':
+        return 7;
+      default:
+        return null;
+    }
+  }
 
-  final _days = [
-    'Domingo',
-    'Segunda-Feira',
-    'Terça-Feira',
-    'Quarta-Feira',
-    'Quinta-Feira',
-    'Sexta-Feira',
-    'Sábado',
-  ];
-
-  List<DropdownMenuItem<String>> getDays(BuildContext context) => _days
-      .map<DropdownMenuItem<String>>((String value) => DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-          ))
-      .toList();
+  String _convertIntToDay(int day) {
+    switch (day) {
+      case 1:
+        return 'Domingo';
+      case 2:
+        return 'Segunda-Feira';
+      case 3:
+        return 'Terça-Feira';
+      case 4:
+        return 'Quarta-Feira';
+      case 5:
+        return 'Quinta-Feira';
+      case 6:
+        return 'Sexta-Feira';
+      case 7:
+        return 'Sábado';
+      default:
+        return null;
+    }
+  }
 
   @action
-  setDaySelected(String newValue) {
-    daySelected = newValue;
-    print('Dia: $daySelected');
+  setValues(String key, bool newValue) {
+    values[key] = newValue;
+    print(values[key]);
   }
 }
