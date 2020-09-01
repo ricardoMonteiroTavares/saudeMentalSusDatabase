@@ -10,11 +10,11 @@ const RESOURCES = {
 "manifest.json": "bdd6ab1511d14da63157d4a5e9d2215b",
 "assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/NOTICES": "16c835f86f88888c6d67299aa854f1f9",
+"assets/NOTICES": "1d2f8f28e4c43b3a34571d61b2819818",
 "assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"main.dart.js": "71fc3fe6fda47db9d9ef8aa318f8f4b5"
+"main.dart.js": "baf0cb11b28033eb23e67698a3e4dd00"
 };
 
 // The application shell files that are downloaded before a service worker can
