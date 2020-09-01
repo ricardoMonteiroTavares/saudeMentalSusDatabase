@@ -42,7 +42,7 @@ abstract class _Controller with Store {
     if (attendanceEdit != null) {
       openingHour = attendanceEdit.openingHour;
       closingHour = attendanceEdit.closingHour;
-      // daySelected = _days[attendanceEdit.weekDay - 1];
+      values[_convertIntToDay(attendanceEdit.weekDay)] = true;
     }
   }
 
@@ -88,20 +88,77 @@ abstract class _Controller with Store {
     return 'Hora Inválida';
   }
 
+  bool _validateCheckBox() {
+    bool flag = false;
+    values.forEach((key, value) {
+      if (value) {
+        flag = true;
+      }
+    });
+    return flag;
+  }
+
   @action
   submit(BuildContext context) {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState.validate() && _validateCheckBox()) {
       formKey.currentState.save();
-      Reception reception = new Reception(
-          openingHour: openingHour, closingHour: closingHour, weekDay: null);
-      Navigator.of(context).pop(reception);
+      List<Reception> l = [];
+      values.forEach((key, value) {
+        if (value) {
+          l.add(new Reception(
+              openingHour: openingHour,
+              closingHour: closingHour,
+              weekDay: _convertDayToInt(key)));
+        }
+      });
+      print(l.toString());
+      Navigator.of(context).pop(l);
     } else {
       autoValidate = true;
     }
   }
 
-  @observable
-  String daySelected = 'Domingo';
+  int _convertDayToInt(String day) {
+    switch (day) {
+      case 'Domingo':
+        return 1;
+      case 'Segunda-Feira':
+        return 2;
+      case 'Terça-Feira':
+        return 3;
+      case 'Quarta-Feira':
+        return 4;
+      case 'Quinta-Feira':
+        return 5;
+      case 'Sexta-Feira':
+        return 6;
+      case 'Sábado':
+        return 7;
+      default:
+        return null;
+    }
+  }
+
+  String _convertIntToDay(int day) {
+    switch (day) {
+      case 1:
+        return 'Domingo';
+      case 2:
+        return 'Segunda-Feira';
+      case 3:
+        return 'Terça-Feira';
+      case 4:
+        return 'Quarta-Feira';
+      case 5:
+        return 'Quinta-Feira';
+      case 6:
+        return 'Sexta-Feira';
+      case 7:
+        return 'Sábado';
+      default:
+        return null;
+    }
+  }
 
   @action
   setValues(String key, bool newValue) {

@@ -69,21 +69,6 @@ mixin _$Controller on _Controller, Store {
     });
   }
 
-  final _$daySelectedAtom = Atom(name: '_Controller.daySelected');
-
-  @override
-  String get daySelected {
-    _$daySelectedAtom.reportRead();
-    return super.daySelected;
-  }
-
-  @override
-  set daySelected(String value) {
-    _$daySelectedAtom.reportWrite(value, super.daySelected, () {
-      super.daySelected = value;
-    });
-  }
-
   final _$_ControllerActionController = ActionController(name: '_Controller');
 
   @override
@@ -169,8 +154,7 @@ mixin _$Controller on _Controller, Store {
 openingHour: ${openingHour},
 closingHour: ${closingHour},
 autoValidate: ${autoValidate},
-values: ${values},
-daySelected: ${daySelected}
+values: ${values}
     ''';
   }
 }
