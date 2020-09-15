@@ -104,7 +104,7 @@ abstract class _Controller with Store {
   @action
   submit(BuildContext context) {
     _validateCheckBox();
-    if (formKey.currentState.validate() && checkboxError) {
+    if (formKey.currentState.validate() && !checkboxError) {
       formKey.currentState.save();
       List<Reception> l = [];
       values.forEach((key, value) {
