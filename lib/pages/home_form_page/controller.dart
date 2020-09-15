@@ -57,7 +57,7 @@ abstract class _Controller with Store {
       final anchor = html.document.createElement('a') as html.AnchorElement
         ..href = url
         ..style.display = 'none'
-        ..download = 'database.json';
+        ..download = '${city.name}-${city.federationUnity}.json';
       html.document.body.children.add(anchor);
 
       // download

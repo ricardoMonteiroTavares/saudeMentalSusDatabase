@@ -39,6 +39,21 @@ mixin _$Controller on _Controller, Store {
     });
   }
 
+  final _$checkboxErrorAtom = Atom(name: '_Controller.checkboxError');
+
+  @override
+  bool get checkboxError {
+    _$checkboxErrorAtom.reportRead();
+    return super.checkboxError;
+  }
+
+  @override
+  set checkboxError(bool value) {
+    _$checkboxErrorAtom.reportWrite(value, super.checkboxError, () {
+      super.checkboxError = value;
+    });
+  }
+
   final _$autoValidateAtom = Atom(name: '_Controller.autoValidate');
 
   @override
@@ -127,6 +142,17 @@ mixin _$Controller on _Controller, Store {
   }
 
   @override
+  void _validateCheckBox() {
+    final _$actionInfo = _$_ControllerActionController.startAction(
+        name: '_Controller._validateCheckBox');
+    try {
+      return super._validateCheckBox();
+    } finally {
+      _$_ControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic submit(BuildContext context) {
     final _$actionInfo =
         _$_ControllerActionController.startAction(name: '_Controller.submit');
@@ -153,6 +179,7 @@ mixin _$Controller on _Controller, Store {
     return '''
 openingHour: ${openingHour},
 closingHour: ${closingHour},
+checkboxError: ${checkboxError},
 autoValidate: ${autoValidate},
 values: ${values}
     ''';

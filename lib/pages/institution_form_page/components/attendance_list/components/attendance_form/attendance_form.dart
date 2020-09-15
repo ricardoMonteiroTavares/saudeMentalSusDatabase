@@ -25,6 +25,23 @@ class AttendanceFormComp {
                             children: _controller.getDays(),
                           )),
                   Observer(
+                    builder: (_) => Visibility(
+                        visible: _controller.checkboxError,
+                        child: Row(
+                          children: [
+                            Text(
+                              'Selecione ao menos 1 dia da semana',
+                              style: TextStyle(
+                                  color: Color(0xffd3332f), fontSize: 12),
+                              textAlign: TextAlign.start,
+                            )
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Observer(
                       builder: (_) => TextFormField(
                             initialValue: _controller.openingHour,
                             decoration: InputDecoration(

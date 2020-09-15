@@ -16,6 +16,9 @@ abstract class _Controller with Store {
   String closingHour;
 
   @observable
+  bool checkboxError = false;
+
+  @observable
   bool autoValidate = false;
 
   @observable
@@ -88,19 +91,20 @@ abstract class _Controller with Store {
     return 'Hora Inválida';
   }
 
-  bool _validateCheckBox() {
-    bool flag = false;
+  @action
+  void _validateCheckBox() {
+    checkboxError = true;
     values.forEach((key, value) {
       if (value) {
-        flag = true;
+        checkboxError = false;
       }
     });
-    return flag;
   }
 
   @action
   submit(BuildContext context) {
-    if (formKey.currentState.validate() && _validateCheckBox()) {
+    _validateCheckBox();
+    if (formKey.currentState.validate() && checkboxError) {
       formKey.currentState.save();
       List<Reception> l = [];
       values.forEach((key, value) {
