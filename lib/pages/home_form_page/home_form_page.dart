@@ -41,20 +41,22 @@ class _HomeFormPageState extends State<HomeFormPage> {
                 })
           ],
         ),
-        body: Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              FUSelectorComp(),
-              SizedBox(
-                height: 5,
-              ),
-              CityInputComp(),
-              SizedBox(
-                height: 30,
-              ),
-              InstitutionListComp()
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                FUSelectorComp(),
+                SizedBox(
+                  height: 5,
+                ),
+                CityInputComp(),
+                SizedBox(
+                  height: 30,
+                ),
+                InstitutionListComp()
+              ],
+            ),
           ),
         ));
   }

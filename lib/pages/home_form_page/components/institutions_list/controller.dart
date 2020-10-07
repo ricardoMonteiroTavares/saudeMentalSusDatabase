@@ -33,13 +33,16 @@ abstract class _Controller with Store {
     final institution = await Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => InstitutionFormPage(
               institutionEdit: institutions[index],
+              title: 'Editar Instituição',
             )));
     _edit(institution, index);
   }
 
   Future<void> add(BuildContext context) async {
-    final institution = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => InstitutionFormPage()));
+    final institution = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => InstitutionFormPage(
+              title: 'Adicionar Instituição',
+            )));
     _add(institution);
   }
 

@@ -43,7 +43,7 @@ class Controller {
   }
 
   _edit(Uint8List charCodes, BuildContext context) {
-    String source = String.fromCharCodes(charCodes);
+    String source = utf8.decode(charCodes);
 
     Map json = jsonDecode(source);
     City cityEdit = City.fromJson(json);

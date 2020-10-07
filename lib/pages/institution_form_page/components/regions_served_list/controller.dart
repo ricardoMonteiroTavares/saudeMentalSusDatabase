@@ -32,7 +32,7 @@ abstract class _Controller with Store {
 
   @action
   add() {
-    if (newRegion != null) {
+    if ((newRegion != null) && (newRegion.length > 0)) {
       Region r = new Region(name: newRegion);
       regions.add(r);
       print('Adicionado na lista');

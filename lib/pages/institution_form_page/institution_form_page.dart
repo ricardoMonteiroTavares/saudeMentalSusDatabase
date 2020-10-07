@@ -13,8 +13,11 @@ import 'controller.dart';
 
 class InstitutionFormPage extends StatefulWidget {
   final Institution institutionEdit;
+  final String title;
 
-  const InstitutionFormPage({Key key, this.institutionEdit}) : super(key: key);
+  const InstitutionFormPage(
+      {Key key, this.institutionEdit, @required this.title})
+      : super(key: key);
   @override
   _InstitutionFormPageState createState() => _InstitutionFormPageState();
 }
@@ -32,7 +35,7 @@ class _InstitutionFormPageState extends State<InstitutionFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicionar Instituição'),
+        title: Text(widget.title),
         actions: [
           MaterialButton(
               elevation: 0,
